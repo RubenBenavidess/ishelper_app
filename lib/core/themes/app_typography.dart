@@ -43,6 +43,12 @@ class AppTypography {
     color: AppColors.tertiaryTextColor
   );
 
+  static const TextStyle navBarText = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primatyTextColor
+  );
+
   static const TextStyle buttonText = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,

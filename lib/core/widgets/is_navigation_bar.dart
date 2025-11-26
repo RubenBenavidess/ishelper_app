@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ishelper_app/core/themes/app_colors.dart';
+import 'package:ishelper_app/core/themes/app_typography.dart';
 
-class ISBottomNavBar extends StatelessWidget {
+class ISNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const ISBottomNavBar({
+  const ISNavBar({
     super.key,
-    required this.currentIndex,
-    required this.onTap,
+    this.currentIndex = 0,
+    required this.onTap
   });
 
   @override
@@ -18,8 +19,11 @@ class ISBottomNavBar extends StatelessWidget {
       onDestinationSelected: onTap,
       backgroundColor: AppColors.tertiaryBgColor,
       indicatorColor: AppColors.secondaryBgColor,
-      elevation: 3,
-      
+      elevation: 2,
+      height: 70,
+      labelTextStyle: WidgetStateTextStyle.resolveWith((states){
+        return AppTypography.navBarText;
+      }),
       destinations: const [
         NavigationDestination(
           icon: Icon(Icons.home_outlined),

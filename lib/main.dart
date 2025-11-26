@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ishelper_app/core/widgets/designed_button.dart';
 import 'package:ishelper_app/core/widgets/is_navigation_bar.dart';
+import 'package:ishelper_app/core/widgets/main_screen_handler.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,12 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: ISBottomNavBar(
-            currentIndex: 1, 
-            onTap: (indexSelected) => {
-              
-            }
-          )
+          child: MainScreenHandler()
         ),
       ),
     );
