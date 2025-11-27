@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ishelper_app/core/widgets/designed_button.dart';
-import 'package:ishelper_app/core/widgets/is_navigation_bar.dart';
 import 'package:ishelper_app/core/widgets/main_screen_handler.dart';
 
 void main() {
@@ -14,11 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: MainScreenHandler()
-        ),
-      ),
+      home: MainScreenHandler()
     );
   }
 }

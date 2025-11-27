@@ -7,20 +7,20 @@ class AppTypography {
   AppTypography._();
 
   static const TextStyle h1 = TextStyle(
-    fontSize: 24,
+    fontSize: 50,
     fontWeight: FontWeight.bold,
     color: AppColors.primatyTextColor,
     letterSpacing: -0.5,
   );
 
   static const TextStyle h2 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
+    fontSize: 22,
+    fontWeight: FontWeight.w300,
     color: AppColors.primatyTextColor
   );
 
   static const TextStyle h3 = TextStyle(
-    fontSize: 16,
+    fontSize: 22,
     fontWeight: FontWeight.w600,
     color: AppColors.primatyTextColor
   );

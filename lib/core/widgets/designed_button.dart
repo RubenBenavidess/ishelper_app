@@ -41,13 +41,14 @@ class DesignedButton extends StatelessWidget{
 
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: btnColor,
+      foregroundColor: Colors.black,
       elevation: btnVariant == ButtonVariant.primary ? 2 : 0,
       shape: isRounded ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)) : ContinuousRectangleBorder(),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
     );
 
     Widget button = ElevatedButton(
-      onPressed: () {},
+      onPressed: (){},
       style: buttonStyle,
       child: content,
     );
