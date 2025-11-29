@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ishelper_app/core/themes/app_typography.dart';
-import 'package:ishelper_app/core/widgets/background_video.dart';
-import 'package:ishelper_app/core/widgets/designed_button.dart';
+import 'package:ishelper_app/config/themes/app_typography.dart';
+import 'package:ishelper_app/config/widgets/background_video.dart';
+import 'package:ishelper_app/config/widgets/designed_button.dart';
 
 class HomeScreen extends StatefulWidget{
 

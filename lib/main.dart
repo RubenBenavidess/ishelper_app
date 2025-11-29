@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ishelper_app/core/widgets/main_screen_handler.dart';
+import 'package:ishelper_app/src/view/main_screen_handler.dart';
 
 void main() {
   runApp(const MyApp());

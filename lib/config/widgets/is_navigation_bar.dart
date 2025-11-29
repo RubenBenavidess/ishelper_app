@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ishelper_app/core/themes/app_colors.dart';
-import 'package:ishelper_app/core/themes/app_typography.dart';
+import 'package:ishelper_app/config/themes/app_colors.dart';
+import 'package:ishelper_app/config/themes/app_typography.dart';
 
 class ISNavBar extends StatelessWidget {
   final int currentIndex;

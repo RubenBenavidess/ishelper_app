@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ishelper_app/core/widgets/home_screen.dart';
-import 'package:ishelper_app/core/widgets/is_navigation_bar.dart';
+import 'package:ishelper_app/src/view/screens/home_screen.dart';
+import 'package:ishelper_app/config/widgets/is_navigation_bar.dart';
 
 class MainScreenHandler extends StatefulWidget {
   const MainScreenHandler({super.key});
