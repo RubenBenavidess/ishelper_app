@@ -1,34 +1,29 @@
 import 'package:formz/formz.dart';
 
-/// PhoneInput errors variants.
+/// Validation errors for the [PhoneInput].
 enum PhoneInputError {
-  /// Empty input.
+  /// The input is empty.
   empty,
-  /// Invalid format: contains characters that are not digits or standard separators.
+  /// The input contains characters that are not digits or standard phone separators.
   invalidFormat,
-  /// Invalid length: the count of digits is outside the standard range (usually 7-15).
+  /// The number of digits is outside the valid range (6-15).
   invalidLength,
 }
 
-/// Class that represents the phone number input validator.
+/// A form input for a phone number.
 class PhoneInput extends FormzInput<String, PhoneInputError> 
   with FormzInputErrorCacheMixin {
 
-  /// Pure constructor: For empty data.
+  /// Creates a pure [PhoneInput] with an empty value.
   PhoneInput.pure() : super.pure('');
 
-  /// Dirty constructor: For filled data.
+  /// Creates a dirty [PhoneInput] with the given [value].
   PhoneInput.dirty([super.value = '']) : super.dirty();
 
-  /// Regex to ensure the input only contains digits, spaces, hyphens, or parentheses.
-  /// We do not enforce a specific structure (like (XXX) XXX-XXXX) because it varies by country.
+  /// A regular expression that allows only digits, spaces, hyphens, and parentheses.
+  /// This is a lenient regex as phone number formats vary significantly by country.
   static final _allowedCharactersRegex = RegExp(r'^[0-9\s\-\(\)]+$');
 
-  /// Validates the input data.
-  ///
-  /// [value] is the input data.
-  ///
-  /// Returns the phone input error or null (no error).
   @override
   PhoneInputError? validator(String value) {
     
@@ -39,6 +34,7 @@ class PhoneInput extends FormzInput<String, PhoneInputError>
       return PhoneInputError.invalidFormat;
     }
 
+    // After checking for allowed characters, validate the length of actual digits.
     final digitsOnly = sanitizedValue.replaceAll(RegExp(r'[^0-9]'), '');
     if (digitsOnly.length < 6 || digitsOnly.length > 15) {
       return PhoneInputError.invalidLength;

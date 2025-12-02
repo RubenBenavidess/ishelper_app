@@ -66,7 +66,8 @@ class _InfoCard extends StatelessWidget {
 
           SizedBox(
             child: DesignedButton(
-              label: 'SOLICITA UNA COTIZACIÓN'
+              label: 'SOLICITA UNA COTIZACIÓN',
+              onPressed: (){},
             )
           ),
         ],

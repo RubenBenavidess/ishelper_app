@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:ishelper_app/config/themes/app_colors.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 
+/// A customized navigation bar for the application.
+///
+/// This widget builds a [NavigationBar] with predefined styling and destinations.
 class ISNavBar extends StatelessWidget {
+  /// The index of the currently selected destination.
   final int currentIndex;
+  /// The callback that is called when a destination is tapped.
   final Function(int) onTap;
 
+  /// Creates an [ISNavBar] widget.
+  ///
+  /// The [onTap] callback is required.
   const ISNavBar({
     super.key,
     this.currentIndex = 0,
-    required this.onTap
+    required this.onTap,
   });
 
   @override
@@ -21,7 +29,7 @@ class ISNavBar extends StatelessWidget {
       indicatorColor: AppColors.secondaryBgColor,
       elevation: 2,
       height: 70,
-      labelTextStyle: WidgetStateTextStyle.resolveWith((states){
+      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle?>((states) {
         return AppTypography.navBarText;
       }),
       destinations: const [

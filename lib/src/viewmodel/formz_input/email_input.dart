@@ -1,33 +1,40 @@
 import 'package:formz/formz.dart';
 
-/// EmailInput errors variants.
+/// Validation errors for the [EmailInput].
 enum EmailInputError {
-  /// Empty input.
+  /// The input is empty.
   empty,
-  /// Invalid email format.
+  /// The input is not a valid email format.
   invalidFormat
 }
 
-/// Class that represents the email input validator.
+/// Extension to get the error message for a [EmailInputError].
+extension EmailInputErrorMessage on EmailInputError{
+  String get errorMessage{
+    switch(this){
+      case EmailInputError.empty:
+        return "Campo obligatorio.";
+      case EmailInputError.invalidFormat:
+        return "Formato de correo electrónico inválido.";
+    }
+  }
+}
+
+/// A form input for an email address.
 class EmailInput extends FormzInput<String, EmailInputError> 
   with FormzInputErrorCacheMixin {
 
-  /// Pure constructor: For empty data.
+  /// Creates a pure [EmailInput] with an empty value.
   EmailInput.pure() : super.pure('');
 
-  /// Dirty constructor: For filled data.
+  /// Creates a dirty [EmailInput] with the given [value].
   EmailInput.dirty([super.value = '']) : super.dirty();
 
-  /// Regex expression to validate the email format.
+  /// A regular expression to validate an email address.
   static final _emailRegex = RegExp(
     r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
   );
 
-  /// Validates the input data.
-  ///
-  /// [value] is the input data.
-  ///
-  /// Returns the email input error or null (no error).
   @override
   EmailInputError? validator(String value) {
     

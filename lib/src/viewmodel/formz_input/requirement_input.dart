@@ -1,30 +1,25 @@
 import 'package:formz/formz.dart';
 
-/// RequirementInput errors variants.
+/// Validation errors for the [RequirementInput].
 enum RequirementInputError {
-  /// Empty input.
+  /// The input is empty.
   empty,
-  /// Exceeded defined length (max 500).
+  /// The input exceeds the maximum length of 500 characters.
   tooLong,
 }
 
-/// Class that represents the requirement/message input validator.
-class RequirementInput extends FormzInput<String, RequirementInputError> {
+/// A form input for a requirement or message field.
+class RequirementInput extends FormzInput<String, RequirementInputError>
+    with FormzInputErrorCacheMixin {
+      
+  /// Creates a pure [RequirementInput] with an empty value.
+  RequirementInput.pure() : super.pure('');
 
-  /// Pure constructor: For empty data.
-  const RequirementInput.pure() : super.pure('');
+  /// Creates a dirty [RequirementInput] with the given [value].
+  RequirementInput.dirty([super.value = '']) : super.dirty();
 
-  /// Dirty constructor: For filled data.
-  const RequirementInput.dirty([super.value = '']) : super.dirty();
-
-  /// Validates the input data.
-  ///
-  /// [value] is the input data.
-  ///
-  /// Returns the requirement input error or null (no error).
   @override
   RequirementInputError? validator(String value) {
-
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return RequirementInputError.empty;

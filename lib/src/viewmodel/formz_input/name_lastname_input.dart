@@ -1,42 +1,54 @@
 import 'package:formz/formz.dart';
 
-/// NameInput errors variants.
+/// Validation errors for the [NameOrLastNameInput].
 enum NameOrLastNameInputError {
-  /// Empty input.
-  empty, 
-  /// Exceeded defined length.
-  invalidLength, 
-  /// Invalid format: only alphabetical characters.
+  /// The input is empty.
+  empty,
+  /// The input exceeds the maximum length of 35 characters.
+  invalidLength,
+  /// The input contains invalid characters.
   invalidFormat
 }
 
-/// Class that represents the name or last name input validator.
-class NameOrLastNameInput extends FormzInput<String, NameOrLastNameInputError>
-  with FormzInputErrorCacheMixin{
+/// Extension to get the error message for a [NameOrLastNameInputError].
+extension NameOrLastNameInputErrorMessage on NameOrLastNameInputError{
+  String get errorMessage {
+    switch (this) {
+      case NameOrLastNameInputError.empty:
+        return "Campo obligatorio.";
+      case NameOrLastNameInputError.invalidLength:
+        return "Máximo 35 caracteres.";
+      case NameOrLastNameInputError.invalidFormat:
+        return "Solo letras y caracteres válidos.";
+    }
+  }
+}
 
-  /// Pure constructor: For empty data.
+/// A form input for a name or last name.
+class NameOrLastNameInput extends FormzInput<String, NameOrLastNameInputError>
+    with FormzInputErrorCacheMixin {
+
+  /// Creates a pure [NameOrLastNameInput] with an empty value.
   NameOrLastNameInput.pure() : super.pure('');
-  /// Dirty constructor: For filled data.
+
+  /// Creates a dirty [NameOrLastNameInput] with the given [value].
   NameOrLastNameInput.dirty([super.value = '']) : super.dirty();
 
-  /// Regex expression to validate the only alphabetical characters for the name input.
+  /// A regular expression to validate a name or last name.
+  ///
+  /// Allows alphabetic characters, spaces, hyphens, and apostrophes.
   static final _dataRegex = RegExp(r"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s'-]+$");
 
-  /// Validates the input data.
-  ///
-  /// [value] is the input data.
-  ///
-  /// Returns the name input error or null (no error).
   @override
   NameOrLastNameInputError? validator(String value) {
-
     final sanitizedValue = value.trim();
 
-    if(sanitizedValue.isEmpty) return NameOrLastNameInputError.empty;
-    if(sanitizedValue.length > 35) return NameOrLastNameInputError.invalidLength;
-    if(!_dataRegex.hasMatch(sanitizedValue)) return NameOrLastNameInputError.invalidFormat;
+    if (sanitizedValue.isEmpty) return NameOrLastNameInputError.empty;
+    if (sanitizedValue.length > 35) return NameOrLastNameInputError.invalidLength;
+    if (!_dataRegex.hasMatch(sanitizedValue)) {
+      return NameOrLastNameInputError.invalidFormat;
+    }
 
     return null;
   }
-
 }

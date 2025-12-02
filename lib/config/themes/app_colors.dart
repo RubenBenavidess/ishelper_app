@@ -15,8 +15,11 @@ class AppColors{
   static const Color secondaryBtnColor = Color.fromRGBO(31, 36, 41, 1);
 
   // Text Colors
-  static const Color primatyTextColor = Color.fromRGBO(255, 255, 255, 1);
+  static const Color primaryTextColor = Color.fromRGBO(255, 255, 255, 1);
   static const Color secondaryTextColor = Color.fromRGBO(52, 52, 52, 1);
   static const Color tertiaryTextColor = Color.fromRGBO(96, 94, 94, 1);
 
+  // Inputs Colors
+  static const Color inputBgColor = Color.fromRGBO(176, 183, 191, 0.57);
+  static const Color inputFocusColor = Color.fromRGBO(101, 186, 244, 1);
 }

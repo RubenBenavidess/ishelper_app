@@ -1,33 +1,30 @@
 import 'package:formz/formz.dart';
 
-/// CityInput errors variants.
+/// Validation errors for the [CityInput].
 enum CityInputError {
-  /// Empty input.
+  /// The input is empty.
   empty,
-  /// Exceeded defined length.
+  /// The input exceeds the maximum length.
   tooLong,
-  /// Invalid format: only alphabetical characters.
+  /// The input contains invalid characters.
   invalidFormat
 }
 
-/// Class that represents the city input validator.
+/// A form input for a city name.
 class CityInput extends FormzInput<String, CityInputError> 
     with FormzInputErrorCacheMixin {
 
-  /// Pure constructor: For empty data.
+  /// Creates a pure [CityInput] with an empty value.
   CityInput.pure() : super.pure('');
 
-  /// Dirty constructor: For filled data.
+  /// Creates a dirty [CityInput] with the given [value].
   CityInput.dirty([super.value = '']) : super.dirty();
 
-  /// Regex expression to validate the city name.
+  /// A regular expression to validate the city name.
+  ///
+  /// Allows alphabetic characters, spaces, hyphens, and apostrophes.
   static final _cityRegex = RegExp(r"^[a-zA-ZÀ-ÿ\u00f1\u00d1\s'-]+$");
 
-  /// Validates the input data.
-  ///
-  /// [value] is the input data.
-  ///
-  /// Returns the city input error or null (no error).
   @override
   CityInputError? validator(String value) {
     
