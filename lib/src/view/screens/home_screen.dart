@@ -12,70 +12,6 @@ class HomeScreen extends StatefulWidget{
 
 }
 
-class _InfoCard extends StatelessWidget {
-  
-  static const String _mainText = "+500 millones";
-  static const String _mainSubText1 = "de usuarios protegidos";
-  static const _mainSubText2 = "La solución de ciberseguridad más utilizada en el mundo.";
-  
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.symmetric(horizontal: 24),
-      
-      child: Column(
-        mainAxisSize: MainAxisSize.min, 
-        crossAxisAlignment: CrossAxisAlignment.center, 
-        children: [
-          
-           const Text(
-            _mainText,
-            style: AppTypography.h1,
-            textAlign: TextAlign.center,
-          ),
-          
-          const SizedBox(height: 8),
-
-          const Text(
-            _mainSubText1,
-            textAlign: TextAlign.center,
-            style: AppTypography.h2,
-          ),
-
-          const SizedBox(height: 40),
-
-          const Text(
-            _mainSubText2,
-            textAlign: TextAlign.center,
-            style: AppTypography.h2,
-          ),
-
-          const SizedBox(height: 60),
-
-          ClipRRect( // Para redondear la imagen si quieres
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/images/logo-bitdefender-peq.webp',
-              fit: BoxFit.cover,
-            ),
-          ),
-
-          const SizedBox(height: 24),
-
-          SizedBox(
-            child: DesignedButton(
-              label: 'SOLICITA UNA COTIZACIÓN',
-              onPressed: (){},
-            )
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class HomeScreenState extends State<HomeScreen>{
 
   @override
@@ -85,10 +21,71 @@ class HomeScreenState extends State<HomeScreen>{
       children: [
         BackgroundVideo(videoPath: "video/main.mp4"),
         Center(
-          child: _InfoCard()
+          child: _infoCard()
         )
       ]
     );
   }
+
+}
+
+Widget _infoCard(){
+
+  const String mainText = "+500 millones";
+  const String mainSubText1 = "de usuarios protegidos";
+  const mainSubText2 = "La solución de ciberseguridad más utilizada en el mundo.";
+
+  return Container(
+    padding: const EdgeInsets.all(20),
+    margin: const EdgeInsets.symmetric(horizontal: 24),
+
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+
+        const Text(
+          mainText,
+          style: AppTypography.h1,
+          textAlign: TextAlign.center,
+        ),
+
+        const SizedBox(height: 8),
+
+        const Text(
+          mainSubText1,
+          textAlign: TextAlign.center,
+          style: AppTypography.h3,
+        ),
+
+        const SizedBox(height: 40),
+
+        const Text(
+          mainSubText2,
+          textAlign: TextAlign.center,
+          style: AppTypography.h3,
+        ),
+
+        const SizedBox(height: 60),
+
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.asset(
+            'assets/images/logo-bitdefender.webp',
+            fit: BoxFit.cover,
+          ),
+        ),
+
+        const SizedBox(height: 24),
+
+        SizedBox(
+            child: DesignedButton(
+              label: 'SOLICITA UNA COTIZACIÓN',
+              onPressed: (){},
+            )
+        ),
+      ],
+    ),
+  );
 
 }

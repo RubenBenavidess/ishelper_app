@@ -4,12 +4,10 @@ import 'package:ishelper_app/config/themes/app_colors.dart';
 class AppInputDecoration {
 
   static InputDecoration generateISInputDecoration({
-    String label = "",
     String hint = "",
     String? errorMessage
   }){
     return InputDecoration(
-      labelText: label,
       hintText: hint,
       hintStyle: TextStyle(
         color: AppColors.tertiaryTextColor

@@ -45,9 +45,7 @@ class NameOrLastNameInput extends FormzInput<String, NameOrLastNameInputError>
 
     if (sanitizedValue.isEmpty) return NameOrLastNameInputError.empty;
     if (sanitizedValue.length > 35) return NameOrLastNameInputError.invalidLength;
-    if (!_dataRegex.hasMatch(sanitizedValue)) {
-      return NameOrLastNameInputError.invalidFormat;
-    }
+    if (!_dataRegex.hasMatch(sanitizedValue)) return NameOrLastNameInputError.invalidFormat;
 
     return null;
   }

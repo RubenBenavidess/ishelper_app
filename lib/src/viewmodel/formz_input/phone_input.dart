@@ -10,9 +10,22 @@ enum PhoneInputError {
   invalidLength,
 }
 
+extension PhoneInputErrorMessage on PhoneInputError{
+  String get errorMessage {
+    switch(this){
+      case PhoneInputError.empty:
+        return "Campo obligatorio.";
+      case PhoneInputError.invalidFormat:
+        return "Formato inválido.";
+      case PhoneInputError.invalidLength:
+        return "Número inválido.";
+    }
+  }
+}
+
 /// A form input for a phone number.
-class PhoneInput extends FormzInput<String, PhoneInputError> 
-  with FormzInputErrorCacheMixin {
+class PhoneInput extends FormzInput<String, PhoneInputError>
+    with FormzInputErrorCacheMixin {
 
   /// Creates a pure [PhoneInput] with an empty value.
   PhoneInput.pure() : super.pure('');
@@ -26,19 +39,15 @@ class PhoneInput extends FormzInput<String, PhoneInputError>
 
   @override
   PhoneInputError? validator(String value) {
-    
+
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return PhoneInputError.empty;
-    if (!_allowedCharactersRegex.hasMatch(sanitizedValue)) {
-      return PhoneInputError.invalidFormat;
-    }
+    if (!_allowedCharactersRegex.hasMatch(sanitizedValue)) return PhoneInputError.invalidFormat;
 
-    // After checking for allowed characters, validate the length of actual digits.
     final digitsOnly = sanitizedValue.replaceAll(RegExp(r'[^0-9]'), '');
-    if (digitsOnly.length < 6 || digitsOnly.length > 15) {
-      return PhoneInputError.invalidLength;
-    }
+    if (digitsOnly.length < 6 || digitsOnly.length > 15) return PhoneInputError.invalidLength;
+
 
     return null;
   }

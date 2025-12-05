@@ -16,17 +16,23 @@ class NameBloc extends StatelessWidget{
     return BlocBuilder<ContactCubit, ContactState>(
       buildWhen: (previousState, currentState) => previousState.nameInput != currentState.nameInput,
       builder: (context, state) {
-        return TextField(
-          key: const Key("contactForm_nameInput"),
-          onChanged: (value) => context.read<ContactCubit>().nameChanged(value),
-          keyboardType: TextInputType.name,
-          decoration: AppInputDecoration.generateISInputDecoration(
-            label: "Nombre",
-            hint: "Ingrese su nombre",
-            errorMessage: state.nameInput.displayError?.errorMessage
-          ),
-          style: AppTypography.inputsText,
-          enabled: !state.status.isInProgress
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Nombre", style: AppTypography.labelText),
+            const SizedBox(height: 8,),
+            TextField(
+              key: const Key("contactForm_nameInput"),
+              onChanged: (value) => context.read<ContactCubit>().nameChanged(value),
+              keyboardType: TextInputType.name,
+              decoration: AppInputDecoration.generateISInputDecoration(
+                hint: "Nombre",
+                errorMessage: state.nameInput.displayError?.errorMessage
+              ),
+              style: AppTypography.inputsText,
+              enabled: !state.status.isInProgress
+            )
+          ]
         );
       },
     );

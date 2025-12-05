@@ -38,6 +38,8 @@ dependencies:
   formz: ^0.8.0
   equatable: ^2.0.7
   flutter_bloc: ^9.1.1
+  flutter_intl_phone_field: ^0.0.7
+  country_picker: ^2.0.27
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +65,8 @@ flutter:
 
   assets:
     - assets/video/main.mp4
-    - assets/images/logo-bitdefender-peq.webp
+    - assets/images/logo-bitdefender.webp
+    - assets/images/contact_bg_image.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

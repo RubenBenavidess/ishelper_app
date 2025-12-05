@@ -14,7 +14,7 @@ class AppTypography {
   );
 
   static const TextStyle h2 = TextStyle(
-    fontSize: 22,
+    fontSize: 40,
     fontWeight: FontWeight.w300,
     color: AppColors.primaryTextColor
   );
@@ -26,15 +26,9 @@ class AppTypography {
   );
 
   static const TextStyle h4 = TextStyle(
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
-    color: AppColors.primaryTextColor
-  );
-
-  static const TextStyle h5 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    color: AppColors.secondaryTextColor
+    color: AppColors.secondaryBgColor
   );
 
   static const TextStyle descriptionText = TextStyle(
@@ -59,6 +53,12 @@ class AppTypography {
       fontSize: 16,
       fontWeight: FontWeight.w500,
       color: Colors.black
+  );
+
+  static const TextStyle labelText = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: Colors.white
   );
 
 }

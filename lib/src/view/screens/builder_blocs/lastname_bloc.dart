@@ -16,19 +16,27 @@ class LastNameBloc extends StatelessWidget{
     return BlocBuilder<ContactCubit, ContactState>(
       buildWhen: (previousState, currentState) => previousState.lastNameInput != currentState.lastNameInput,
       builder: (context, state) {
-        return TextField(
-            key: const Key("contactForm_lastnameInput"),
-            onChanged: (value) => context.read<ContactCubit>().lastNameChanged(value),
-            keyboardType: TextInputType.name,
-            decoration: AppInputDecoration.generateISInputDecoration(
-                label: "Apellido",
-                hint: "Ingrese su apellido",
-                errorMessage: state.lastNameInput.displayError?.errorMessage
-            ),
-            style: AppTypography.inputsText,
-            enabled: !state.status.isInProgress
+        return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Apellido", style: AppTypography.labelText),
+              const SizedBox(height: 8,),
+              TextField(
+                  key: const Key("contactForm_lastnameInput"),
+                  onChanged: (value) =>
+                      context.read<ContactCubit>().lastNameChanged(value),
+                  keyboardType: TextInputType.name,
+                  decoration: AppInputDecoration.generateISInputDecoration(
+                      hint: "Apellido",
+                      errorMessage: state.lastNameInput.displayError
+                          ?.errorMessage
+                  ),
+                  style: AppTypography.inputsText,
+                  enabled: !state.status.isInProgress
+              )
+            ]
         );
-      },
+      }
     );
   }
 

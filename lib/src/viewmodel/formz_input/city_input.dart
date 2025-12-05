@@ -10,6 +10,19 @@ enum CityInputError {
   invalidFormat
 }
 
+extension CityInputErrorExtension on CityInputError {
+  String get errorMessage{
+    switch(this){
+      case CityInputError.empty:
+        return 'El campo no puede estar vacío';
+      case CityInputError.tooLong:
+        return 'El campo no puede tener más de 60 caracteres';
+      case CityInputError.invalidFormat:
+        return 'El campo solo puede contener letras, espacios, guiones y apóstrofos';
+    }
+  }
+}
+
 /// A form input for a city name.
 class CityInput extends FormzInput<String, CityInputError> 
     with FormzInputErrorCacheMixin {
