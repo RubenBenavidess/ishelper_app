@@ -10,6 +10,19 @@ enum ContactReasonInputError {
   invalidFormat
 }
 
+extension ContactReasonInputErrorMessage on ContactReasonInputError {
+  String get errorMessage {
+    switch (this) {
+      case ContactReasonInputError.empty:
+        return "Campo obligatorio.";
+      case ContactReasonInputError.invalidLength:
+        return "El campo no puede superar los 100 caracteres.";
+      case ContactReasonInputError.invalidFormat:
+        return "El campo solo puede contener letras.";
+    }
+  }
+}
+
 /// A form input for a city name.
 class ContactReasonInput extends FormzInput<String, ContactReasonInputError>
     with FormzInputErrorCacheMixin {
@@ -23,8 +36,7 @@ class ContactReasonInput extends FormzInput<String, ContactReasonInputError>
   /// A regular expression to validate the contact reason input name.
   ///
   /// Allows alphabetic characters.
-  static final _plainTextRegex = RegExp(r'^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]{1,100}$');
-
+  static final _plainTextRegex = RegExp(r'^[a-zA-ZÀ-ÿ\u00f1\u00d1\s?¿!¡.,]{1,100}$');
 
   @override
   ContactReasonInputError? validator(String value) {

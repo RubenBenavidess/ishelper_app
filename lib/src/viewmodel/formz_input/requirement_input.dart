@@ -8,6 +8,17 @@ enum RequirementInputError {
   tooLong,
 }
 
+extension RequirementInputErrorMessage on RequirementInputError {
+  String get errorMessage {
+    switch (this) {
+      case RequirementInputError.empty:
+        return "Campo obligatorio.";
+      case RequirementInputError.tooLong:
+        return "El campo no puede superar los 500 caracteres.";
+    }
+  }
+}
+
 /// A form input for a requirement or message field.
 class RequirementInput extends FormzInput<String, RequirementInputError>
     with FormzInputErrorCacheMixin {

@@ -52,13 +52,15 @@ class DesignedButton extends StatelessWidget {
           Icon(icon, size: 20),
           const SizedBox(width: 8),
         ],
-        Text(label, style: AppTypography.buttonText),
+        Text(
+            label,
+            style: AppTypography.buttonText
+        ),
       ],
     );
 
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: btnColor,
-      // foregroundColor: Colors.black,
       elevation: btnVariant == ButtonVariant.primary ? 2 : 0,
       shape: isRounded
           ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))

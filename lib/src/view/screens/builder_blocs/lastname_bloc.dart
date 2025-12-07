@@ -28,8 +28,7 @@ class LastNameBloc extends StatelessWidget{
                   keyboardType: TextInputType.name,
                   decoration: AppInputDecoration.generateISInputDecoration(
                       hint: "Apellido",
-                      errorMessage: state.lastNameInput.displayError
-                          ?.errorMessage
+                      errorMessage: state.lastNameInput.displayError?.errorMessage
                   ),
                   style: AppTypography.inputsText,
                   enabled: !state.status.isInProgress

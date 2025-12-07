@@ -15,7 +15,7 @@ class AppTypography {
 
   static const TextStyle h2 = TextStyle(
     fontSize: 40,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w800,
     color: AppColors.primaryTextColor
   );
 
@@ -38,27 +38,33 @@ class AppTypography {
   );
 
   static const TextStyle navBarText = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
     color: AppColors.primaryTextColor
   );
 
   static const TextStyle buttonText = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
     color: AppColors.primaryTextColor,
   );
 
   static const TextStyle inputsText = TextStyle(
       fontSize: 16,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w400,
       color: Colors.black
   );
 
   static const TextStyle labelText = TextStyle(
       fontSize: 16,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       color: Colors.white
+  );
+
+  static const TextStyle errorInputText = TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w700,
+      color: Colors.redAccent
   );
 
 }

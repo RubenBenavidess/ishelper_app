@@ -2,7 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ishelper_app/config/themes/app_input_decoration.dart';
+import 'package:formz/formz.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/contact_cubit.dart';
 import 'package:ishelper_app/src/viewmodel/states/contact_state.dart';
@@ -18,32 +18,32 @@ class CountryBloc extends StatelessWidget{
       buildWhen: (previousState, currentState) =>
         previousState.countryInput != currentState.countryInput,
       builder: (context, state) {
-        return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              InputDecorator(
-                decoration: AppInputDecoration.generateISInputDecoration(),
-                child: SizedBox(
-                  child: CountryCodePicker(
-                    onChanged: (country){
-                      context.read<ContactCubit>().countryChanged(country.toString());
-                    }, 
-                    initialSelection: 'EC',
-                    favorite: ['+593','EC'],
-                    showCountryOnly: true,
-                    showOnlyCountryWhenClosed: true,
-                    textStyle: AppTypography.labelText,
-                    boxDecoration: BoxDecoration(
-                      color: Colors.white,
-                      border: BoxBorder.symmetric(),
-                    ),
-                    pickerStyle: PickerStyle.dialog,
-                    padding: EdgeInsets.zero,
-                    headerText: 'Seleccionar país',
-                    
-                  ) 
-                    )
-              )
+              const Text("País:", style: AppTypography.labelText),
+              const SizedBox(height: 8,),
+              CountryCodePicker(
+                key: const Key("contactForm_countryInput"),
+                onChanged: (country){
+                  context.read<ContactCubit>().countryChanged(country.toString());
+                },
+                initialSelection: 'EC',
+                favorite: ['+593','EC'],
+                showCountryOnly: true,
+                showOnlyCountryWhenClosed: true,
+                textStyle: AppTypography.labelText,
+                boxDecoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                pickerStyle: PickerStyle.dialog,
+                headerText: 'Seleccionar país',
+                dialogTextStyle: AppTypography.inputsText,
+                headerTextStyle: AppTypography.inputsText,
+                searchStyle: AppTypography.inputsText,
+                enabled: !state.status.isInProgress,
+              ),
             ]
         );
       },

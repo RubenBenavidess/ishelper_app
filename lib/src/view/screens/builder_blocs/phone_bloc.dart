@@ -34,6 +34,7 @@ class PhoneBloc extends StatelessWidget{
                 pickerDialogStyle: PickerDialogStyle(
                   backgroundColor: AppColors.primaryBgColor,
                   padding: EdgeInsets.all(24),
+                  countryCodeStyle: AppTypography.inputsText
                 ),
                 initialCountryCode: 'EC',
                 languageCode: 'es',
@@ -58,6 +59,8 @@ class PhoneBloc extends StatelessWidget{
                   }
                   return null;
                 },
+                style: AppTypography.inputsText,
+                dropdownTextStyle: AppTypography.inputsText,
               )
 
             ]

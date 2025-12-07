@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ishelper_app/config/themes/app_colors.dart';
+import 'package:ishelper_app/config/themes/app_typography.dart';
 
 class AppInputDecoration {
 
@@ -10,7 +11,8 @@ class AppInputDecoration {
     return InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(
-        color: AppColors.tertiaryTextColor
+        color: AppColors.tertiaryTextColor,
+        fontWeight: FontWeight.w700
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.horizontal()
@@ -24,7 +26,9 @@ class AppInputDecoration {
           width: 2
         )
       ),
-      errorText: errorMessage
+      errorText: errorMessage,
+      errorStyle: AppTypography.errorInputText,
+      errorMaxLines: 2
     );
   }
 

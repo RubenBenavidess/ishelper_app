@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
+import 'package:ishelper_app/config/widgets/designed_button.dart';
 import 'package:ishelper_app/src/view/screens/builder_blocs/city_bloc.dart';
+import 'package:ishelper_app/src/view/screens/builder_blocs/contact_reason_bloc.dart';
 import 'package:ishelper_app/src/view/screens/builder_blocs/country_bloc.dart';
 import 'package:ishelper_app/src/view/screens/builder_blocs/phone_bloc.dart';
 import 'package:ishelper_app/src/view/screens/builder_blocs/email_bloc.dart';
 import 'package:ishelper_app/src/view/screens/builder_blocs/lastname_bloc.dart';
 import 'package:ishelper_app/src/view/screens/builder_blocs/name_bloc.dart';
+import 'package:ishelper_app/src/view/screens/builder_blocs/requirement_bloc.dart';
+import 'package:ishelper_app/src/viewmodel/cubits/contact_cubit.dart';
+import 'package:ishelper_app/src/viewmodel/states/contact_state.dart';
 
 class ContactScreen extends StatelessWidget{
   const ContactScreen({super.key});
@@ -22,7 +28,7 @@ class ContactScreen extends StatelessWidget{
         ),
         Positioned.fill(
           child: Container(
-            color: Color.fromRGBO(50, 65, 88, 0.95)
+            color: Color.fromRGBO(50, 65, 88, 0.90)
           ),
         ),
         Positioned.fill(
@@ -81,6 +87,27 @@ Widget _buildContactScreen(BuildContext context){
   );
 }
 
+class ContactSubmitButton extends StatelessWidget{
+
+  const ContactSubmitButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ContactCubit, ContactState>(
+        builder: (context, state){
+          return SizedBox(
+              child: DesignedButton(
+                label: 'Enviar',
+                onPressed: (){
+
+                },
+              )
+          );
+        }
+    );
+  }
+}
+
 
 Widget _buildContactForm(BuildContext context){
 
@@ -94,11 +121,11 @@ Widget _buildContactForm(BuildContext context){
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
+            const Expanded(
                 child: NameBloc()
             ),
-            SizedBox(width: 16),
-            Expanded(
+            const SizedBox(width: 16),
+            const Expanded(
                 child: LastNameBloc()
             ),
           ],
@@ -111,8 +138,18 @@ Widget _buildContactForm(BuildContext context){
         const Text("Dirección", style: AppTypography.labelText, textAlign: TextAlign.left,),
         const SizedBox(height: 9,),
         CityBloc(),
-        const SizedBox(height: 9,),
-        CountryBloc()
+        const SizedBox(height: 24,),
+        CountryBloc(),
+        const SizedBox(height: 24,),
+        ContactReasonBloc(),
+        const SizedBox(height: 24,),
+        RequirementBloc(),
+        const SizedBox(height: 30,),
+        Container(
+          alignment: Alignment.center,
+          child: ContactSubmitButton(),
+        )
+
     ])
   );
 }
