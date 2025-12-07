@@ -1,10 +1,7 @@
-import 'package:country_picker/country_picker.dart';
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_intl_phone_field/country_picker_dialog.dart';
-import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
-import 'package:formz/formz.dart';
-import 'package:ishelper_app/config/themes/app_colors.dart';
 import 'package:ishelper_app/config/themes/app_input_decoration.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/contact_cubit.dart';
@@ -24,7 +21,29 @@ class CountryBloc extends StatelessWidget{
         return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
+              InputDecorator(
+                decoration: AppInputDecoration.generateISInputDecoration(),
+                child: SizedBox(
+                  child: CountryCodePicker(
+                    onChanged: (country){
+                      context.read<ContactCubit>().countryChanged(country.toString());
+                    }, 
+                    initialSelection: 'EC',
+                    favorite: ['+593','EC'],
+                    showCountryOnly: true,
+                    showOnlyCountryWhenClosed: true,
+                    textStyle: AppTypography.labelText,
+                    boxDecoration: BoxDecoration(
+                      color: Colors.white,
+                      border: BoxBorder.symmetric(),
+                    ),
+                    pickerStyle: PickerStyle.dialog,
+                    padding: EdgeInsets.zero,
+                    headerText: 'Seleccionar país',
+                    
+                  ) 
+                    )
+              )
             ]
         );
       },

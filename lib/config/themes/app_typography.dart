@@ -46,7 +46,7 @@ class AppTypography {
   static const TextStyle buttonText = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: AppColors.primaryTextColor
+    color: AppColors.primaryTextColor,
   );
 
   static const TextStyle inputsText = TextStyle(

@@ -39,7 +39,7 @@ dependencies:
   equatable: ^2.0.7
   flutter_bloc: ^9.1.1
   flutter_intl_phone_field: ^0.0.7
-  country_picker: ^2.0.27
+  country_code_picker: ^3.4.1
 
 dev_dependencies:
   flutter_test:

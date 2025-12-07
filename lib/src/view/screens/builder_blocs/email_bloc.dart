@@ -23,7 +23,7 @@ class EmailBloc extends StatelessWidget{
               const SizedBox(height: 8,),
               TextField(
                   key: const Key("contactForm_emailInput"),
-                  onChanged: (value) => context.read<ContactCubit>().nameChanged(value),
+                  onChanged: (value) => context.read<ContactCubit>().emailChanged(value),
                   keyboardType: TextInputType.name,
                   decoration: AppInputDecoration.generateISInputDecoration(
                       hint: "Email",
