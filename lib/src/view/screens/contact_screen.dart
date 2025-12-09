@@ -119,7 +119,6 @@ Widget _buildContactForm(BuildContext context){
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Expanded(
                 child: NameBloc()

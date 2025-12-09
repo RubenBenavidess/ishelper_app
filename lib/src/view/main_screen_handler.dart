@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ishelper_app/src/view/screens/contact_screen.dart';
 import 'package:ishelper_app/src/view/screens/home_screen.dart';
 import 'package:ishelper_app/config/widgets/navigation_bar.dart';
+import 'package:ishelper_app/src/view/screens/solutions_screen.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/contact_cubit.dart';
 
 /// A stateful widget that manages the main screen, handling page navigation
@@ -21,7 +22,7 @@ class _MainScreenHandlerState extends State<MainScreenHandler> {
   /// The list of pages to be displayed in the main content area.
   final List<Widget> _pages = [
     const Center(child: HomeScreen()), // Index 0: Home
-    const Center(child: Text('Pantalla Soluciones')), // Index 1: Solutions
+    const Center(child: SolutionsScreen()), // Index 1: Solutions
     BlocProvider(
       create: (_) => ContactCubit(),
       child: const ContactScreen(),

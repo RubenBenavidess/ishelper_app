@@ -23,4 +23,7 @@ class AppColors{
   static const Color inputBgColor = Color.fromRGBO(
       176, 183, 191, 1.0);
   static const Color inputFocusColor = Color.fromRGBO(101, 186, 244, 1);
+
+  // Extra colors
+  static const Color categoryColor = Color.fromRGBO(160, 160, 159, 1);
 }

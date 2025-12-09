@@ -10,6 +10,7 @@ class AppTypography {
     fontSize: 50,
     fontWeight: FontWeight.bold,
     color: AppColors.primaryTextColor,
+    fontFamily: 'Roboto Mono',
     letterSpacing: -0.5,
   );
 
@@ -32,8 +33,16 @@ class AppTypography {
   );
 
   static const TextStyle descriptionText = TextStyle(
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
+    color: AppColors.tertiaryTextColor
+  );
+
+  static final TextStyle descriptionTextBold = TextStyle(
+    fontSize: 16,
+    fontFamily: 'Raleway',
+    fontWeight: FontWeight.w700,
+    fontVariations: [FontVariation.italic(1)],
     color: AppColors.tertiaryTextColor
   );
 
@@ -65,6 +74,20 @@ class AppTypography {
       fontSize: 10,
       fontWeight: FontWeight.w700,
       color: Colors.redAccent
+  );
+
+  static const TextStyle solutionsTitle = TextStyle(
+    fontSize: 36,
+    fontFamily: 'Raleway',
+    fontWeight: FontWeight.bold,
+    color: AppColors.secondaryBgColor
+  );
+
+  static const TextStyle solutionsCategory = TextStyle(
+    fontSize: 23,
+    fontFamily: 'Raleway',
+    fontWeight: FontWeight.bold,
+    color: AppColors.categoryColor
   );
 
 }
