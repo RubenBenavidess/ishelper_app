@@ -113,5 +113,6 @@ class ContactState extends Equatable {
         requirementInput,
         status,
         isValid
-      ];
+  ];
+  
 }

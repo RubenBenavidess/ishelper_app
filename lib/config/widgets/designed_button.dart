@@ -6,7 +6,7 @@ import 'package:ishelper_app/config/themes/app_typography.dart';
 enum ButtonVariant {
   /// A primary button style with a prominent background color.
   primary,
-  /// A secondary button style with a less prominent background color.
+  /// A secondary button style with a sucess background color.
   secondary,
   /// A tertiary button style, often with a transparent or light background.
   tertiary

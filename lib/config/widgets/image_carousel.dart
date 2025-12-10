@@ -50,6 +50,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.height,
+      width: 378,
       child: Stack(
         children: [
           PageView.builder(

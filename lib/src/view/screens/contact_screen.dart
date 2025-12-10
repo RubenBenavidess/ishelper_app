@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 import 'package:ishelper_app/config/widgets/designed_button.dart';
 import 'package:ishelper_app/src/view/screens/builder_blocs/city_bloc.dart';
@@ -91,17 +93,76 @@ class ContactSubmitButton extends StatelessWidget{
 
   const ContactSubmitButton({super.key});
 
+  Widget _buildWidget(BuildContext context, ContactState state){
+    if(state.status.isSuccess) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          DesignedButton(
+            label: '',
+            icon: Icons.check
+          ),
+          Text(
+            "Tu correo ha sido recibido.",
+            style: AppTypography.inputsText,
+            textAlign: TextAlign.right,
+          )
+        ],
+      );   
+    }
+    if(state.status.isInProgress){
+      return const CircularProgressIndicator();
+    }
+    if(state.status.isFailure){
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          DesignedButton(
+            label: '',
+            icon: Icons.error,
+          ),
+          Text(
+            "Tu correo ha sido rechazado.",
+            style: AppTypography.errorInputText,
+            textAlign: TextAlign.right,
+          )
+        ],
+      ); 
+    }
+    if(state.status.isCanceled){
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          DesignedButton(
+            label: 'Enviar',
+            onPressed: (){
+              context.read<ContactCubit>().submitContact();
+            },
+          ),
+          const SizedBox(height: 4,),
+          Text(
+            "Por favor llena los campos respectivamente.",
+            style: AppTypography.errorInputText,
+            textAlign: TextAlign.justify,
+          )
+        ],
+      ); 
+    }
+    return DesignedButton(
+      label: 'Enviar',
+      onPressed: (){
+        context.read<ContactCubit>().submitContact();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ContactCubit, ContactState>(
         builder: (context, state){
           return SizedBox(
-              child: DesignedButton(
-                label: 'Enviar',
-                onPressed: (){
-
-                },
-              )
+            width: 300,
+            child: _buildWidget(context, state)
           );
         }
     );

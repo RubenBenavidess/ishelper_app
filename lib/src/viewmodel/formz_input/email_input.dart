@@ -24,6 +24,8 @@ extension EmailInputErrorMessage on EmailInputError{
 class EmailInput extends FormzInput<String, EmailInputError> 
   with FormzInputErrorCacheMixin {
 
+  static const int _maxLength = 0;
+
   /// Creates a pure [EmailInput] with an empty value.
   EmailInput.pure() : super.pure('');
 

@@ -133,7 +133,10 @@ class ContactCubit extends Cubit<ContactState>{
   /// It sets the status to [FormzSubmissionStatus.inProgress] while submitting,
   /// and then to [FormzSubmissionStatus.success] or [FormzSubmissionStatus.failure].
   Future<void> submitContact() async{
-    if(!state.isValid) return;
+    if(!state.isValid) {
+      emit(state.copyWith(status: FormzSubmissionStatus.canceled));
+      return;
+    }
     if(state.status.isInProgress) return;
 
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));

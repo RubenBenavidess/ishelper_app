@@ -27,6 +27,8 @@ extension ContactReasonInputErrorMessage on ContactReasonInputError {
 class ContactReasonInput extends FormzInput<String, ContactReasonInputError>
     with FormzInputErrorCacheMixin {
 
+  static const int _maxLength = 100;
+
   /// Creates a pure [ContactReasonInput] with an empty value.
   ContactReasonInput.pure() : super.pure('');
 
@@ -44,7 +46,7 @@ class ContactReasonInput extends FormzInput<String, ContactReasonInputError>
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return ContactReasonInputError.empty;
-    if (sanitizedValue.length > 100) return ContactReasonInputError.invalidLength;
+    if (sanitizedValue.length > _maxLength) return ContactReasonInputError.invalidLength;
     if (!_plainTextRegex.hasMatch(sanitizedValue)) return ContactReasonInputError.invalidFormat;
 
     return null;

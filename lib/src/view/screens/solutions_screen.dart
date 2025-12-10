@@ -68,10 +68,31 @@ class SolutionsScreen extends StatelessWidget{
 
     const String description3 = 
     """
-    Se trata de una plataforma de simulación de ataques de ingeniería social, 
-    para conocer el nivel de respuesta de los colaboradores ante posibles amenazas; 
-    además, se complementa con un sistema de e-learning y evaluación.
+    Se trata de una plataforma de simulación de ataques de ingeniería social, para conocer el nivel de respuesta de los colaboradores ante posibles amenazas; además, se complementa con un sistema de e-learning y evaluación.
     """;
+
+    const List<CarouselItem> solution3CarouselItems = [
+      CarouselItem(
+        path: 'https://static.wixstatic.com/media/08b335_bd8149cbbf0642afb3ab32867663ed88~mv2.png/v1/fill/w_378,h_248,al_c,q_80,usm_0.66_1.00_0.01/08b335_bd8149cbbf0642afb3ab32867663ed88~mv2.png', 
+        type: ImageType.network
+      ),
+      CarouselItem(
+        path: 'https://static.wixstatic.com/media/08b335_c05605c86838489e89a4a40e84dca2b2~mv2.png/v1/fill/w_378,h_248,al_c,q_80,usm_0.66_1.00_0.01/08b335_c05605c86838489e89a4a40e84dca2b2~mv2.png', 
+        type: ImageType.network
+      ),
+      CarouselItem(
+        path: 'https://static.wixstatic.com/media/08b335_6a16de0bbfa849039ab441a717bdf22b~mv2.png/v1/fill/w_378,h_248,al_c,q_80,usm_0.66_1.00_0.01/08b335_6a16de0bbfa849039ab441a717bdf22b~mv2.png', 
+        type: ImageType.network
+      ),
+      CarouselItem(
+        path: 'https://static.wixstatic.com/media/08b335_39e5ac8e39574d429dd7f0a56f83f0b1~mv2.png/v1/fill/w_378,h_248,al_c,q_80,usm_0.66_1.00_0.01/08b335_39e5ac8e39574d429dd7f0a56f83f0b1~mv2.png', 
+        type: ImageType.network
+      ),
+      CarouselItem(
+        path: 'https://static.wixstatic.com/media/08b335_0df4b15d98ed4f2db291405158ee7fd5~mv2.png/v1/fill/w_378,h_248,al_c,q_80,usm_0.66_1.00_0.01/08b335_0df4b15d98ed4f2db291405158ee7fd5~mv2.png', 
+        type: ImageType.network
+      )
+    ];
 
     return Stack(
       children: [
@@ -109,9 +130,9 @@ class SolutionsScreen extends StatelessWidget{
                       logoPath: 'assets/images/logo-bitdefender-black.webp', 
                       personalizedDescription: [
                         const TextSpan(
-                          text: description2,
-                          style: AppTypography.descriptionText
-                        ),
+                        text: description2,
+                        style: AppTypography.descriptionText,
+                      ),
                         TextSpan(
                           text: description2Bold,
                           style: AppTypography.descriptionTextBold
@@ -119,6 +140,14 @@ class SolutionsScreen extends StatelessWidget{
                       ],
                       category: 'Hogar',
                       carouselItems: solution2CarouselItems,
+                    ),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    _Solution(
+                      logoPath: 'assets/images/logo-attack-simulator.webp', 
+                      description: description3,
+                      carouselItems: solution3CarouselItems,
                     ),
                   ],
                 ),
@@ -192,10 +221,10 @@ class _Solution extends StatelessWidget{
                     style: AppTypography.descriptionText,
                 ) 
               else if(description != null)
-                  TextSpan(
-                    text: description,
-                    style: AppTypography.descriptionText,
-                  )  
+                TextSpan(
+                  text: description,
+                  style: AppTypography.descriptionText,
+                )  
             ]
           ),
           textAlign: TextAlign.justify,

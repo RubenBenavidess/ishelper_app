@@ -33,9 +33,9 @@ class PhoneInput extends FormzInput<String, PhoneInputError>
   /// Creates a dirty [PhoneInput] with the given [value].
   PhoneInput.dirty([super.value = '']) : super.dirty();
 
-  /// A regular expression that allows only digits, spaces, hyphens, and parentheses.
-  /// This is a lenient regex as phone number formats vary significantly by country.
-  static final _allowedCharactersRegex = RegExp(r'^[0-9\s\-\(\)]+$');
+  /// A regular expression that allows only valid phone numbers with no special chars.
+  final _phoneRegex = RegExp(r'^[1-9][0-9]{7,14}$');
+
 
   @override
   PhoneInputError? validator(String value) {
@@ -43,11 +43,8 @@ class PhoneInput extends FormzInput<String, PhoneInputError>
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return PhoneInputError.empty;
-    if (!_allowedCharactersRegex.hasMatch(sanitizedValue)) return PhoneInputError.invalidFormat;
-
-    final digitsOnly = sanitizedValue.replaceAll(RegExp(r'[^0-9]'), '');
-    if (digitsOnly.length < 6 || digitsOnly.length > 15) return PhoneInputError.invalidLength;
-
+    if (!_phoneRegex.hasMatch(sanitizedValue)) return PhoneInputError.invalidFormat;
+    if (sanitizedValue.length < 8 || sanitizedValue.length > 15) return PhoneInputError.invalidLength;
 
     return null;
   }
