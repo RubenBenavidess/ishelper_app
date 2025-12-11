@@ -1,5 +1,4 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -26,8 +25,9 @@ class CountryBloc extends StatelessWidget{
               const SizedBox(height: 8,),
               CountryCodePicker(
                 key: const Key("contactForm_countryInput"),
-                onChanged: (country){
-                  context.read<ContactCubit>().countryChanged(country.toString());
+                onChanged: (country) => context.read<ContactCubit>().countryChanged(country.name ?? ""),
+                onInit: (country){
+                  if(country != null) context.read<ContactCubit>().countryChanged(country.name ?? "");
                 },
                 initialSelection: 'EC',
                 favorite: ['+593','EC'],

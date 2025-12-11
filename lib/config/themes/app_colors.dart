@@ -12,7 +12,7 @@ class AppColors{
 
   // Button Colors
   static const Color primaryBtnColor = Color.fromRGBO(212, 33, 68, 1);
-  static const Color secondaryBtnColor = Color.fromRGBO(31, 36, 41, 1);
+  static const Color secondaryBtnColor = Color.fromRGBO(33, 192, 99, 1);
 
   // Text Colors
   static const Color primaryTextColor = Color.fromRGBO(255, 255, 255, 1);

@@ -67,7 +67,7 @@ class ContactState extends Equatable {
       requirementInput: RequirementInput.pure(),
       status: FormzSubmissionStatus.initial,
       isValid: false,
-      countryCode: CountryCodeInput.pure()
+      countryCode: CountryCodeInput.dirty('593')
     );
   }
 

@@ -38,6 +38,7 @@ class PhoneBloc extends StatelessWidget{
                 ),
                 initialCountryCode: 'EC',
                 languageCode: 'es',
+
                 // ignore: deprecated_member_use
                 searchText: "Buscar país",
                 disableLengthCheck: true,

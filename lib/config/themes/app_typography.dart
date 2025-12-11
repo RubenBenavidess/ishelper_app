@@ -72,8 +72,14 @@ class AppTypography {
 
   static const TextStyle errorInputText = TextStyle(
       fontSize: 10,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w800,
       color: Colors.redAccent
+  );
+
+  static const TextStyle successInputText = TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w800,
+      color: AppColors.secondaryBtnColor
   );
 
   static const TextStyle solutionsTitle = TextStyle(

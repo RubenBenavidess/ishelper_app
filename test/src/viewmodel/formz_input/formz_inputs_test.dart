@@ -121,7 +121,7 @@ void main() {
 
     test('| Pure EmailInput is not valid.', () {
       final emailInput = EmailInput.pure();
-      expect(emailInput..displayError, isNull);
+      expect(emailInput.displayError, isNull);
       expect(emailInput.isValid, isFalse);
     });
 

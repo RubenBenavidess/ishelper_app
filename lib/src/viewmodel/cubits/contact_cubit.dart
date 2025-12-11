@@ -127,6 +127,11 @@ class ContactCubit extends Cubit<ContactState>{
     ));
   }
 
+  // Updates the initial FormzState, must be used CAREFUL.
+  void setInitialState(){
+    emit(state.copyWith(status: FormzSubmissionStatus.initial));
+  }
+
   /// Submits the contact form.
   ///
   /// If the form is not valid or already in progress, it does nothing.

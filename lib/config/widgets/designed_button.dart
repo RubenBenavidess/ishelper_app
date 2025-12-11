@@ -71,7 +71,7 @@ class DesignedButton extends StatelessWidget {
     Widget button = ElevatedButton(
       onPressed: onPressed,
       style: buttonStyle,
-      child: content,
+      child: content
     );
 
     return button;
