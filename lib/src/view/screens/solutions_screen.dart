@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ishelper_app/config/themes/app_colors.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 import 'package:ishelper_app/config/widgets/designed_button.dart';
 import 'package:ishelper_app/config/widgets/image_carousel.dart';
+import 'package:ishelper_app/src/view/utils/pdf_render.dart';
+import 'package:ishelper_app/src/viewmodel/cubits/navigation_index_cubit.dart';
+import 'package:ishelper_app/src/viewmodel/formz_input/models/file.dart';
 
 class SolutionsScreen extends StatelessWidget{
 
@@ -39,6 +43,12 @@ class SolutionsScreen extends StatelessWidget{
         type: ImageType.network
       ),
     ];
+    const solution1PDFPath = 'https://www.issolutions.com.ec/_files/ugd/08b335_f399809d1f264190b5528328d28dc5fa.pdf';
+    const solution1PDF = File(
+      fileType: FileType.pdf, 
+      fileSource: FileSource.network, 
+      path: solution1PDFPath
+    );
 
     const String description2 = 
     """
@@ -65,6 +75,11 @@ class SolutionsScreen extends StatelessWidget{
         type: ImageType.network
       )
     ];
+
+    const solution2Path = 'https://bitdefenderecuador.com/';
+
+
+
 
     const String description3 = 
     """
@@ -94,6 +109,15 @@ class SolutionsScreen extends StatelessWidget{
       )
     ];
 
+    const solution3PDFPath = 'https://www.issolutions.com.ec/_files/ugd/08b335_1f1d39b1d8e544ef8704ced424ff5215.pdf';
+    const solution3PDF = File(
+      fileType: FileType.pdf, 
+      fileSource: FileSource.network, 
+      path: solution3PDFPath
+    );
+
+
+
     return Stack(
       children: [
         Positioned.fill(
@@ -122,6 +146,7 @@ class SolutionsScreen extends StatelessWidget{
                       description: description1,
                       category: 'Empresas',
                       carouselItems: solution1CarouselItems,
+                      solutionPDF: solution1PDF,
                     ),
                     SizedBox(
                       height: 50,
@@ -148,6 +173,7 @@ class SolutionsScreen extends StatelessWidget{
                       logoPath: 'assets/images/logo-attack-simulator.webp', 
                       description: description3,
                       carouselItems: solution3CarouselItems,
+                      solutionPDF: solution3PDF,
                     ),
                   ],
                 ),
@@ -168,13 +194,17 @@ class _Solution extends StatelessWidget{
   final String? description;
   final List<TextSpan>? personalizedDescription;
   final List<CarouselItem>? carouselItems;
+  final File? solutionPDF;
+  final VoidCallback? onBtnPressedPersonalizedCB;
 
   const _Solution({
     required this.logoPath,
     this.category,
     this.description,
     this.personalizedDescription,
-    this.carouselItems
+    this.carouselItems,
+    this.solutionPDF,
+    this.onBtnPressedPersonalizedCB
   });
 
   @override
@@ -203,10 +233,15 @@ class _Solution extends StatelessWidget{
               )
             ),
             SizedBox(width: 12,),
-            DesignedButton(
-              label: "CONOCER MÁS",
-              isRounded: true,
-              onPressed: (){},
+            BlocBuilder<NavigationIndexCubit, int>(
+              buildWhen: (previous, current) => previous != current,
+                builder: (context, state) => DesignedButton(
+                  label: "CONOCER MÁS",
+                  isRounded: true,
+                  onPressed: onBtnPressedPersonalizedCB ?? (){
+                    context.read<NavigationIndexCubit>().indexChanged(3);
+                  },
+                )
             )
           ],
         ),
@@ -237,5 +272,30 @@ class _Solution extends StatelessWidget{
     );
   }
 
+}
+
+class _LinkConfirmationDialog extends StatelessWidget {
+  
+  final String url;
+
+  const _LinkConfirmationDialog({required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text("Abrir enlace externo"),
+      content: Text("¿Deseas salir de la app para ver $url?"),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(false),
+          child: const Text("Cancelar"),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.of(context).pop(true),
+          child: const Text("Abrir"),
+        ),
+      ],
+    );
+  }
 }
 

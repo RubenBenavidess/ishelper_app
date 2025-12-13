@@ -2,14 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/contact_cubit.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/city_input.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/contact_reason_input.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/country_code_input.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/country_input.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/email_input.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/name_lastname_input.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/phone_input.dart';
-import 'package:ishelper_app/src/viewmodel/formz_input/requirement_input.dart';
 import 'package:ishelper_app/src/viewmodel/states/contact_state.dart';
 
 void main() {

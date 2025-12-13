@@ -45,6 +45,8 @@ dependencies:
   intl: any
   google_fonts: ^6.3.3
   cached_network_image: ^3.4.1
+  webview_flutter: ^4.13.0
+  flutter_cached_pdfview: ^0.4.3
 
 dev_dependencies:
   flutter_test:

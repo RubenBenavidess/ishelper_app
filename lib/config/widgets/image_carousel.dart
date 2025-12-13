@@ -136,7 +136,7 @@ class _CarouselImage extends StatelessWidget {
         return Image.asset(
           item.path,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) => _ErrorPlaceholder(),
+          errorBuilder: (_, _, _) => _ErrorPlaceholder(),
         );
     }
   }
