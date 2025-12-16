@@ -11,19 +11,15 @@ class FileCubit extends Cubit<FileState>{
 
   FileCubit({required this.fileInputService}) : super(FileState.initial());
 
-  bool _validate(
-    FileInput? fileInput
-  ){
-    return Formz.validate([
-      fileInput ?? state.fileInput
-    ]);
+  bool _validate(FileInput? fileInput){
+    return Formz.validate([fileInput ?? state.fileInput]);
   }
 
-  void fileChanged(File file){
+  void fileChanged(File file) {
     final fileInput = FileInput.dirty(file);
     emit(state.copyWith(
-      fileInput: fileInput,
-      isValid: _validate(fileInput)
+        fileInput: fileInput,
+        isValid: _validate(fileInput)
     ));
   }
 

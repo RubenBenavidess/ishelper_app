@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 import 'package:ishelper_app/config/widgets/background_video.dart';
 import 'package:ishelper_app/config/widgets/designed_button.dart';
@@ -94,16 +95,11 @@ class _InfoCard extends StatelessWidget{
           const SizedBox(height: 24),
 
           SizedBox(
-              child: BlocBuilder<NavigationIndexCubit, int>(
-                buildWhen: (previous, current) => previous != current,
-                builder: (context, state){
-                  return DesignedButton(
-                    label: 'SOLICITA UNA COTIZACIÓN',
-                    onPressed: (){
-                      context.read<NavigationIndexCubit>().indexChanged(2);
-                    },
-                  );
-                }
+              child: DesignedButton(
+                label: 'SOLICITA UNA COTIZACIÓN',
+                onPressed: (){
+                  context.go('/contact');
+                },
               )
           ),
         ],

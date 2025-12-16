@@ -47,6 +47,7 @@ dependencies:
   cached_network_image: ^3.4.1
   webview_flutter: ^4.13.0
   flutter_cached_pdfview: ^0.4.3
+  go_router: ^17.0.1
 
 dev_dependencies:
   flutter_test:

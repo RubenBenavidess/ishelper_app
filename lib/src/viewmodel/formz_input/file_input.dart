@@ -23,14 +23,13 @@ class FileInput extends FormzInput<File, FileInputError>
   @override
   FileInputError? validator(File file) {
 
-    if(file.fileType != FileType.doc || file.fileType != FileType.pdf) return FileInputError.unsupportedFileType;
-    if(file.fileSource != FileSource.network || file.fileSource != FileSource.local) return FileInputError.unsupportedSourceType;
+    if(file.fileType != FileType.doc && file.fileType != FileType.pdf) return FileInputError.unsupportedFileType;
+    if(file.fileSource != FileSource.network && file.fileSource != FileSource.local) return FileInputError.unsupportedSourceType;
     
     final filePath = file.path.trim();
     if(filePath.isEmpty) return FileInputError.invalidPathFormat;
 
     return null;
-
   }
 
 }

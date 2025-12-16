@@ -4,7 +4,7 @@ import 'package:ishelper_app/src/view/utils/pdf_render.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/file_cubit.dart';
 import 'package:ishelper_app/src/viewmodel/states/file_state.dart';
 
-class PDFScreen extends StatelessWidget{
+class PDFScreen extends StatelessWidget {
 
   static const PDFRender pdfRender = PDFRender();
 
@@ -15,6 +15,7 @@ class PDFScreen extends StatelessWidget{
     return BlocBuilder<FileCubit, FileState>(
       buildWhen: (previous, current) => previous.fileInput != current.fileInput,
       builder: (context, state){
+        print(state.fileInput.value.path);
         return pdfRender.renderFile(state.fileInput.value);
       }
     );

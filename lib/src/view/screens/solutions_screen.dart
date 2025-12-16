@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ishelper_app/config/themes/app_colors.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 import 'package:ishelper_app/config/widgets/designed_button.dart';
 import 'package:ishelper_app/config/widgets/image_carousel.dart';
-import 'package:ishelper_app/src/view/utils/pdf_render.dart';
-import 'package:ishelper_app/src/viewmodel/cubits/navigation_index_cubit.dart';
+import 'package:ishelper_app/src/viewmodel/cubits/file_cubit.dart';
 import 'package:ishelper_app/src/viewmodel/formz_input/models/file.dart';
+import 'package:ishelper_app/src/viewmodel/states/file_state.dart';
 
 class SolutionsScreen extends StatelessWidget{
 
@@ -233,15 +234,15 @@ class _Solution extends StatelessWidget{
               )
             ),
             SizedBox(width: 12,),
-            BlocBuilder<NavigationIndexCubit, int>(
-              buildWhen: (previous, current) => previous != current,
-                builder: (context, state) => DesignedButton(
-                  label: "CONOCER MÁS",
-                  isRounded: true,
-                  onPressed: onBtnPressedPersonalizedCB ?? (){
-                    context.read<NavigationIndexCubit>().indexChanged(3);
-                  },
-                )
+            DesignedButton(
+              label: "CONOCER MÁS",
+              isRounded: true,
+              onPressed: onBtnPressedPersonalizedCB ?? (){
+                if(solutionPDF != null){
+                  context.read<FileCubit>().fileChanged(solutionPDF!);
+                  context.push('/pdf-viewer');
+                }
+              }
             )
           ],
         ),
