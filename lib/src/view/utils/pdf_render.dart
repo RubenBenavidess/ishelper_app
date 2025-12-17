@@ -36,7 +36,16 @@ class _PDFViewer extends StatelessWidget{
         },
       ).cachedFromUrl(
         path,
-        placeholder: (progress) => Center(child: Text('$progress %')),
+        placeholder: (progress) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircularProgressIndicator(),
+              const SizedBox(height: 10),
+              Text('$progress %', style: const TextStyle(fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
         errorWidget: (error) => Center(child: Text(error.toString())),
       );
     } else if(fileSource == FileSource.local){
