@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 import 'package:ishelper_app/config/widgets/background_video.dart';
 import 'package:ishelper_app/config/widgets/designed_button.dart';
-import 'package:ishelper_app/src/viewmodel/cubits/navigation_index_cubit.dart';
 
 class HomeScreen extends StatefulWidget{
 
@@ -32,7 +30,10 @@ class HomeScreenState extends State<HomeScreen>{
     
     return Stack(
       children: [
-        BackgroundVideo(videoPath: "video/main.mp4"),
+        BackgroundVideo(
+          videoPath: "assets/video/main.mp4",
+          placeholderPath: "assets/images/main_placeholder.jpg",
+        ),
         Center(
           child: _InfoCard()
         )

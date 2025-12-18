@@ -7,7 +7,7 @@ import 'package:ishelper_app/config/widgets/designed_button.dart';
 import 'package:ishelper_app/config/widgets/image_carousel.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/file_cubit.dart';
 import 'package:ishelper_app/src/viewmodel/formz_input/models/file.dart';
-import 'package:ishelper_app/src/viewmodel/states/file_state.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SolutionsScreen extends StatelessWidget{
 
@@ -51,6 +51,9 @@ class SolutionsScreen extends StatelessWidget{
       path: solution1PDFPath
     );
 
+
+
+
     const String description2 = 
     """
     Bitdefender es una solución potente y liviana, mundialmente reconocida y premiada por su altísimo desempeño y bajo impacto en el rendimiento del computador. Durante este 2020 fue catalogada por AV-Comparatives, como el """;
@@ -76,9 +79,8 @@ class SolutionsScreen extends StatelessWidget{
         type: ImageType.network
       )
     ];
-
     const solution2Path = 'https://bitdefenderecuador.com/';
-
+    final Uri solution2Uri = Uri.parse(solution2Path);
 
 
 
@@ -166,6 +168,7 @@ class SolutionsScreen extends StatelessWidget{
                       ],
                       category: 'Hogar',
                       carouselItems: solution2CarouselItems,
+                      onBtnPressedPersonalizedCB: () => _handleLinkOpening(context, solution2Uri)
                     ),
                     SizedBox(
                       height: 50,
@@ -297,6 +300,22 @@ class _LinkConfirmationDialog extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+Future<void> _handleLinkOpening(BuildContext context, Uri url) async {
+  final bool? shouldOpen = await showDialog<bool>(
+    context: context,
+    builder: (context) => const _LinkConfirmationDialog(url: 'google.com'),
+  );
+
+  if (shouldOpen == true && context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Abriendo navegador...")),
+    );
+    if (!await launchUrl(url)) {
+      throw Exception('No se puedo abrir el enlace.');
+    }
   }
 }
 

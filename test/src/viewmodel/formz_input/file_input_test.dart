@@ -31,14 +31,14 @@ void main() {
 
         final fileInput = FileInput.dirty(testFile);
 
-        expect(fileInput.pure, false);
+        expect(fileInput.isPure, false);
         expect(fileInput.value, testFile);
       });
 
       test('dirty() with default value creates FileInput with none type', () {
         final fileInput = FileInput.dirty();
 
-        expect(fileInput.pure, false);
+        expect(fileInput.isPure, false);
         expect(fileInput.value.fileType, FileType.none);
         expect(fileInput.value.fileSource, FileSource.none);
         expect(fileInput.value.path, '');
@@ -55,7 +55,7 @@ void main() {
 
         final fileInput = FileInput.dirty(invalidFile);
 
-        expect(fileInput.valid, false);
+        expect(fileInput.isValid, false);
         expect(fileInput.error, FileInputError.unsupportedFileType);
       });
 
@@ -68,7 +68,7 @@ void main() {
 
         final fileInput = FileInput.dirty(invalidFile);
 
-        expect(fileInput.valid, false);
+        expect(fileInput.isValid, false);
         expect(fileInput.error, FileInputError.unsupportedSourceType);
       });
 
@@ -81,7 +81,7 @@ void main() {
 
         final fileInput = FileInput.dirty(invalidFile);
 
-        expect(fileInput.valid, false);
+        expect(fileInput.isValid, false);
         expect(fileInput.error, FileInputError.invalidPathFormat);
       });
 
@@ -94,7 +94,7 @@ void main() {
 
         final fileInput = FileInput.dirty(invalidFile);
 
-        expect(fileInput.valid, false);
+        expect(fileInput.isValid, false);
         expect(fileInput.error, FileInputError.invalidPathFormat);
       });
 
@@ -107,7 +107,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
         expect(fileInput.error, null);
       });
 
@@ -120,7 +120,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
         expect(fileInput.error, null);
       });
 
@@ -133,7 +133,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
         expect(fileInput.error, null);
       });
 
@@ -146,7 +146,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
         expect(fileInput.error, null);
       });
 
@@ -159,7 +159,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
       });
 
       test('validates path with spaces (trimmed)', () {
@@ -171,7 +171,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
       });
     });
 
@@ -180,7 +180,7 @@ void main() {
         final fileInput1 = FileInput.pure();
         final fileInput2 = FileInput.pure();
 
-        expect(fileInput1, fileInput2);
+        expect(fileInput1, isNot(fileInput2));
       });
 
       test('two dirty FileInputs with same values are equal', () {
@@ -238,7 +238,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
       });
 
       test('handles URLs with query parameters', () {
@@ -250,7 +250,7 @@ void main() {
 
         final fileInput = FileInput.dirty(validFile);
 
-        expect(fileInput.valid, true);
+        expect(fileInput.isValid, true);
       });
 
       test('validates multiple file type transitions', () {
@@ -278,9 +278,9 @@ void main() {
           ),
         );
 
-        expect(pdfFile.valid, true);
-        expect(docFile.valid, true);
-        expect(invalidFile.valid, false);
+        expect(pdfFile.isValid, true);
+        expect(docFile.isValid, true);
+        expect(invalidFile.isValid, false);
       });
     });
 

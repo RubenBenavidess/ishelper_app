@@ -50,7 +50,7 @@ void main() {
             home: Scaffold(
               body: BlocProvider<ContactCubit>.value(
                 value: testCubit,
-                child: const NameBloc(),
+                child: NameBloc(),
               ),
             ),
           ),
@@ -63,16 +63,7 @@ void main() {
         );
 
         testCubit.emit(inProgressState);
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: BlocProvider<ContactCubit>.value(
-                value: testCubit,
-                child: const NameBloc(),
-              ),
-            ),
-          ),
-        );
+        await tester.pump();
 
         textField = find.byKey(const Key('contactForm_nameInput'));
         expect(
@@ -207,7 +198,7 @@ void main() {
       },
     );
 
-    testWidgets('NameBloc label text is visible',
+    testWidgets('NameBloc label text and hint of the input are visible',
       (WidgetTester tester) async {
         await tester.pumpWidget(
           MaterialApp(
@@ -220,7 +211,7 @@ void main() {
           ),
         );
 
-        expect(find.text('Nombre'), findsOneWidget);
+        expect(find.text('Nombre'), findsExactly(2));
         expect(find.byType(Text), findsWidgets);
       },
     );

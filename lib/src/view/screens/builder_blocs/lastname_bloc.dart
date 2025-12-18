@@ -14,7 +14,9 @@ class LastNameBloc extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return BlocBuilder<ContactCubit, ContactState>(
-      buildWhen: (previousState, currentState) => previousState.lastNameInput != currentState.lastNameInput,
+      buildWhen: (previousState, currentState) =>
+        previousState.lastNameInput != currentState.lastNameInput ||
+        previousState.status != currentState.status,
       builder: (context, state) {
         return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -15,7 +15,8 @@ class CountryBloc extends StatelessWidget{
   Widget build(BuildContext context){
     return BlocBuilder<ContactCubit, ContactState>(
       buildWhen: (previousState, currentState) =>
-        previousState.countryInput != currentState.countryInput,
+        previousState.countryInput != currentState.countryInput ||
+        previousState.status != currentState.status,
       builder: (context, state) {
         return Row(
             crossAxisAlignment: CrossAxisAlignment.center,

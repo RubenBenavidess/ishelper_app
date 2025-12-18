@@ -14,7 +14,9 @@ class EmailBloc extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return BlocBuilder<ContactCubit, ContactState>(
-      buildWhen: (previousState, currentState) => previousState.emailInput != currentState.emailInput,
+      buildWhen: (previousState, currentState) =>
+        previousState.emailInput != currentState.emailInput ||
+        previousState.status != currentState.status,
       builder: (context, state) {
         return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

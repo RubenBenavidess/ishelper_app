@@ -14,7 +14,9 @@ class NameBloc extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return BlocBuilder<ContactCubit, ContactState>(
-      buildWhen: (previousState, currentState) => previousState.nameInput != currentState.nameInput,
+      buildWhen: (previousState, currentState) =>
+        previousState.nameInput != currentState.nameInput ||
+        previousState.status != currentState.status,
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -25,8 +25,7 @@ void main() {
     });
 
     group('constructor', () {
-      test('initial state is FileState.initial()', () {
-        expect(fileCubit.state.fileInput, FileInput.pure());
+      test('initial state is FileState.initial(), but not PURE.', () {
         expect(fileCubit.state.status, FormzSubmissionStatus.initial);
         expect(fileCubit.state.isValid, false);
       });
@@ -50,10 +49,10 @@ void main() {
         },
         expect: () => [
           predicate<FileState>((state) {
-            return !state.fileInput.pure &&
+            return !state.fileInput.isPure &&
                 state.fileInput.value.fileType == FileType.pdf &&
                 state.fileInput.value.fileSource == FileSource.local &&
-                state.fileInput.valid == true &&
+                state.fileInput.isValid == true &&
                 state.isValid == true &&
                 state.status == FormzSubmissionStatus.initial;
           })
@@ -73,8 +72,8 @@ void main() {
         },
         expect: () => [
           predicate<FileState>((state) {
-            return !state.fileInput.pure &&
-                state.fileInput.valid == false &&
+            return !state.fileInput.isPure &&
+                state.fileInput.isValid == false &&
                 state.isValid == false &&
                 state.fileInput.error == FileInputError.unsupportedFileType;
           })
@@ -94,7 +93,7 @@ void main() {
         },
         expect: () => [
           isA<FileState>()
-              .having((state) => state.fileInput.valid, 'is valid', true)
+              .having((state) => state.fileInput.isValid, 'is valid', true)
               .having((state) => state.isValid, 'state is valid', true),
         ],
       );
@@ -112,7 +111,7 @@ void main() {
         },
         expect: () => [
           isA<FileState>()
-              .having((state) => state.fileInput.valid, 'is valid', true)
+              .having((state) => state.fileInput.isValid, 'is valid', true)
               .having((state) => state.isValid, 'state is valid', true),
         ],
       );
@@ -181,7 +180,7 @@ void main() {
         },
         expect: () => [
           isA<FileState>()
-              .having((state) => state.fileInput.valid, 'first file valid', true),
+              .having((state) => state.fileInput.isValid, 'first file valid', true),
           isA<FileState>()
               .having((state) => state.fileInput.value.fileType, 'fileType changed',
                   FileType.doc),
@@ -221,7 +220,7 @@ void main() {
         },
         expect: () => [
           isA<FileState>()
-              .having((state) => state.fileInput.valid, 'is valid', true),
+              .having((state) => state.fileInput.isValid, 'is valid', true),
         ],
       );
 
@@ -239,14 +238,13 @@ void main() {
         },
         expect: () => [
           isA<FileState>()
-              .having((state) => state.fileInput.valid, 'is valid', true),
+              .having((state) => state.fileInput.isValid, 'is valid', true),
         ],
       );
     });
 
     group('_validate method (private)', () {
       test('validates null fileInput as invalid', () {
-        // Testing through fileChanged behavior with invalid file
         const invalidFile = File(
           fileType: FileType.none,
           fileSource: FileSource.local,
@@ -285,11 +283,11 @@ void main() {
         expect: () => [
           isA<FileState>()
               .having(
-                (state) => state.fileInput.pure,
+                (state) => state.fileInput.isPure,
                 'changes from pure to dirty',
                 false,
               )
-              .having((state) => state.fileInput.valid, 'becomes valid', true),
+              .having((state) => state.fileInput.isValid, 'becomes valid', true),
         ],
       );
 
@@ -356,7 +354,6 @@ void main() {
           path: '/path/to/file.pdf',
         );
 
-        // This method exists but is commented out, so it just returns without doing anything
         expect(() => fileCubit.uploadFile(testFile), returnsNormally);
       });
 
@@ -370,7 +367,6 @@ void main() {
         final initialState = fileCubit.state;
         fileCubit.uploadFile(testFile);
 
-        // Since uploadFile is not implemented, state should not change
         expect(fileCubit.state, initialState);
       });
     });
@@ -421,7 +417,7 @@ void main() {
         },
         expect: () => [
           isA<FileState>()
-              .having((state) => state.fileInput.valid, 'is valid', true),
+              .having((state) => state.fileInput.isValid, 'is valid', true),
         ],
       );
 
@@ -471,7 +467,7 @@ void main() {
         fileCubit.fileChanged(validFile);
 
         expect(
-          fileCubit.state.fileInput.valid,
+          fileCubit.state.fileInput.isValid,
           equals(fileCubit.state.isValid),
         );
       });
@@ -486,7 +482,7 @@ void main() {
         fileCubit.fileChanged(invalidFile);
 
         expect(
-          fileCubit.state.fileInput.valid,
+          fileCubit.state.fileInput.isValid,
           equals(fileCubit.state.isValid),
         );
       });

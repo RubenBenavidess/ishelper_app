@@ -19,7 +19,8 @@ class PhoneBloc extends StatelessWidget{
     return BlocBuilder<ContactCubit, ContactState>(
       buildWhen: (previousState, currentState) =>
         previousState.countryCode != currentState.countryCode ||
-        previousState.phoneInput != currentState.phoneInput,
+        previousState.phoneInput != currentState.phoneInput ||
+        previousState.status != currentState.status,
       builder: (context, state) {
         return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -5,7 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ishelper_app/src/services/pdf_file_input_service.dart';
 import 'package:ishelper_app/src/view/app_router.dart';
-import 'package:ishelper_app/src/view/screens/contact_screen.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/contact_cubit.dart';
 import 'package:ishelper_app/src/viewmodel/cubits/file_cubit.dart';
 

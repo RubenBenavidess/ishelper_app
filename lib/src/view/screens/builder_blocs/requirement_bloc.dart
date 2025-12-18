@@ -15,7 +15,9 @@ class RequirementBloc extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return BlocBuilder<ContactCubit, ContactState>(
-        buildWhen: (previousState, currentState) => previousState.requirementInput != currentState.requirementInput,
+        buildWhen: (previousState, currentState) =>
+          previousState.requirementInput != currentState.requirementInput ||
+          previousState.status != currentState.status,
         builder: (context, state) {
           return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

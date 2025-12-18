@@ -15,7 +15,8 @@ class CityBloc extends StatelessWidget{
   Widget build(BuildContext context){
     return BlocBuilder<ContactCubit, ContactState>(
         buildWhen: (previousState, currentState) =>
-          previousState.cityInput != currentState.cityInput,
+          previousState.cityInput != currentState.cityInput ||
+          previousState.status != currentState.status,
         builder: (context, state) {
           return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -21,7 +21,8 @@ class ContactReasonBloc extends StatelessWidget{
   Widget build(BuildContext context){
     return BlocBuilder<ContactCubit, ContactState>(
       buildWhen: (previousState, currentState) =>
-        previousState.contactReasonInput != currentState.contactReasonInput,
+        previousState.contactReasonInput != currentState.contactReasonInput ||
+        previousState.status != currentState.status,
       builder: (context, state) {
         return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

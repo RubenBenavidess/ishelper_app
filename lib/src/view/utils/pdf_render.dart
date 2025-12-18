@@ -29,10 +29,8 @@ class _PDFViewer extends StatelessWidget{
     if(fileSource == FileSource.network) {
       return PDF(
         onError: (error) {
-          print(error.toString());
         },
         onPageError: (page, error) {
-          print('$page: ${error.toString()}');
         },
       ).cachedFromUrl(
         path,
