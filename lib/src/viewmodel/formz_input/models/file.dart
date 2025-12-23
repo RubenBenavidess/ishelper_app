@@ -1,4 +1,4 @@
-enum FileType {pdf, doc, none}
+enum FileType {pdf, image, doc, none}
 enum FileSource {network, local, none}
 
 class File {
