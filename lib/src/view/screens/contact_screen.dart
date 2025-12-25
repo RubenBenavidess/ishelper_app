@@ -100,40 +100,40 @@ class _ContactFormFields extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(1),
       margin: const EdgeInsets.only(top: 24),
-      child: Column(
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
+            children: [
               Expanded(child: NameBloc()),
               SizedBox(width: 16),
               Expanded(child: LastNameBloc()),
             ],
           ),
-          const SizedBox(height: 24),
-          const EmailBloc(),
-          const SizedBox(height: 24),
-          const PhoneBloc(),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
+          EmailBloc(),
+          SizedBox(height: 24),
+          PhoneBloc(),
+          SizedBox(height: 24),
           
-          const Text(
+          Text(
             "Dirección",
             style: AppTypography.labelText,
             textAlign: TextAlign.left,
           ),
-          const SizedBox(height: 9),
+          SizedBox(height: 9),
           
-          const CityBloc(),
-          const SizedBox(height: 24),
-          const CountryBloc(),
-          const SizedBox(height: 24),
-          const ContactReasonBloc(),
-          const SizedBox(height: 24),
-          const RequirementBloc(),
-          const SizedBox(height: 30),
+          CityBloc(),
+          SizedBox(height: 24),
+          CountryBloc(),
+          SizedBox(height: 24),
+          ContactReasonBloc(),
+          SizedBox(height: 24),
+          RequirementBloc(),
+          SizedBox(height: 30),
           
-          const Center(child: ContactSubmitButton()),
+          Center(child: ContactSubmitButton()),
         ],
       ),
     );
