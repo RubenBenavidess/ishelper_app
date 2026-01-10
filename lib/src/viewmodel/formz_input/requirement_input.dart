@@ -5,13 +5,26 @@ enum RequirementInputError {
   /// The input is empty.
   empty,
   /// The input exceeds the maximum length of 500 characters.
-  tooLong,
+  invalidLength,
+}
+
+extension RequirementInputErrorMessage on RequirementInputError {
+  String get errorMessage {
+    switch (this) {
+      case RequirementInputError.empty:
+        return "Campo obligatorio.";
+      case RequirementInputError.invalidLength:
+        return "El campo no puede superar los 500 caracteres.";
+    }
+  }
 }
 
 /// A form input for a requirement or message field.
 class RequirementInput extends FormzInput<String, RequirementInputError>
     with FormzInputErrorCacheMixin {
-      
+
+  static const int _maxLength = 500;
+
   /// Creates a pure [RequirementInput] with an empty value.
   RequirementInput.pure() : super.pure('');
 
@@ -23,7 +36,7 @@ class RequirementInput extends FormzInput<String, RequirementInputError>
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return RequirementInputError.empty;
-    if (sanitizedValue.length > 500) return RequirementInputError.tooLong;
+    if (sanitizedValue.length > _maxLength) return RequirementInputError.invalidLength;
 
     return null;
   }

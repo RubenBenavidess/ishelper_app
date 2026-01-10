@@ -28,6 +28,8 @@ extension NameOrLastNameInputErrorMessage on NameOrLastNameInputError{
 class NameOrLastNameInput extends FormzInput<String, NameOrLastNameInputError>
     with FormzInputErrorCacheMixin {
 
+  static const _maxLength = 35; 
+
   /// Creates a pure [NameOrLastNameInput] with an empty value.
   NameOrLastNameInput.pure() : super.pure('');
 
@@ -44,10 +46,8 @@ class NameOrLastNameInput extends FormzInput<String, NameOrLastNameInputError>
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return NameOrLastNameInputError.empty;
-    if (sanitizedValue.length > 35) return NameOrLastNameInputError.invalidLength;
-    if (!_dataRegex.hasMatch(sanitizedValue)) {
-      return NameOrLastNameInputError.invalidFormat;
-    }
+    if (sanitizedValue.length > _maxLength) return NameOrLastNameInputError.invalidLength;
+    if (!_dataRegex.hasMatch(sanitizedValue)) return NameOrLastNameInputError.invalidFormat;
 
     return null;
   }

@@ -6,7 +6,7 @@ import 'package:ishelper_app/config/themes/app_typography.dart';
 enum ButtonVariant {
   /// A primary button style with a prominent background color.
   primary,
-  /// A secondary button style with a less prominent background color.
+  /// A secondary button style with a sucess background color.
   secondary,
   /// A tertiary button style, often with a transparent or light background.
   tertiary
@@ -52,13 +52,15 @@ class DesignedButton extends StatelessWidget {
           Icon(icon, size: 20),
           const SizedBox(width: 8),
         ],
-        Text(label, style: AppTypography.buttonText),
+        Text(
+            label,
+            style: AppTypography.buttonText
+        ),
       ],
     );
 
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: btnColor,
-      // foregroundColor: Colors.black,
       elevation: btnVariant == ButtonVariant.primary ? 2 : 0,
       shape: isRounded
           ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
@@ -69,7 +71,7 @@ class DesignedButton extends StatelessWidget {
     Widget button = ElevatedButton(
       onPressed: onPressed,
       style: buttonStyle,
-      child: content,
+      child: content
     );
 
     return button;

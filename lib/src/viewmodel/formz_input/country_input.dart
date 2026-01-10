@@ -8,7 +8,7 @@ enum CountryInputError {
   invalidFormat
 }
 
-/// A form input for a country name.
+/// A form input for a Pountry name.
 class CountryInput extends FormzInput<String, CountryInputError>
     with FormzInputErrorCacheMixin {
   

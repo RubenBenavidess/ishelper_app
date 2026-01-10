@@ -24,6 +24,8 @@ extension EmailInputErrorMessage on EmailInputError{
 class EmailInput extends FormzInput<String, EmailInputError> 
   with FormzInputErrorCacheMixin {
 
+  // static const int _maxLength = 0;
+
   /// Creates a pure [EmailInput] with an empty value.
   EmailInput.pure() : super.pure('');
 
@@ -31,13 +33,11 @@ class EmailInput extends FormzInput<String, EmailInputError>
   EmailInput.dirty([super.value = '']) : super.dirty();
 
   /// A regular expression to validate an email address.
-  static final _emailRegex = RegExp(
-    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-  );
+// Opción A: Equilibrada y robusta
+  static final _emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   @override
   EmailInputError? validator(String value) {
-    
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return EmailInputError.empty;

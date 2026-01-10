@@ -5,14 +5,29 @@ enum CityInputError {
   /// The input is empty.
   empty,
   /// The input exceeds the maximum length.
-  tooLong,
+  invalidLength,
   /// The input contains invalid characters.
   invalidFormat
+}
+
+extension CityInputErrorExtension on CityInputError {
+  String get errorMessage{
+    switch(this){
+      case CityInputError.empty:
+        return 'El campo no puede estar vacío';
+      case CityInputError.invalidLength:
+        return 'El campo no puede tener más de 60 caracteres';
+      case CityInputError.invalidFormat:
+        return 'El campo solo puede contener letras, espacios, guiones y apóstrofos';
+    }
+  }
 }
 
 /// A form input for a city name.
 class CityInput extends FormzInput<String, CityInputError> 
     with FormzInputErrorCacheMixin {
+
+  static const int _maxLength = 60;
 
   /// Creates a pure [CityInput] with an empty value.
   CityInput.pure() : super.pure('');
@@ -31,7 +46,7 @@ class CityInput extends FormzInput<String, CityInputError>
     final sanitizedValue = value.trim();
 
     if (sanitizedValue.isEmpty) return CityInputError.empty;
-    if (sanitizedValue.length > 60) return CityInputError.tooLong;
+    if (sanitizedValue.length > _maxLength) return CityInputError.invalidLength;
     if (!_cityRegex.hasMatch(sanitizedValue)) return CityInputError.invalidFormat;
 
     return null;

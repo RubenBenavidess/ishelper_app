@@ -8,6 +8,17 @@ enum CountryCodeInputError {
   invalidFormat
 }
 
+extension CountryCodeInputErrorMessage on CountryCodeInputError{
+  String get errorMessage {
+    switch(this){
+      case CountryCodeInputError.empty:
+        return "Campo obligatorio.";
+      case CountryCodeInputError.invalidFormat:
+        return "Formato de código inválido.";
+    }
+  }
+}
+
 /// A form input for a country dialing code.
 class CountryCodeInput extends FormzInput<String, CountryCodeInputError>
     with FormzInputErrorCacheMixin {
@@ -19,17 +30,13 @@ class CountryCodeInput extends FormzInput<String, CountryCodeInputError>
   CountryCodeInput.dirty([super.value = '']) : super.dirty();
 
   /// A regular expression to validate a country code.
-  ///
-  /// It must start with a '+' and be followed by 1 to 4 digits.
-  static final _countryCodeRegex = RegExp(r'^\+\d{1,4}$');
+  static final _countryCodeRegex = RegExp(r'^\d{1,4}$');
 
   @override
   CountryCodeInputError? validator(String value) {
     final sanitizedValue = value.trim();
     if (sanitizedValue.isEmpty) return CountryCodeInputError.empty;
-    if (!_countryCodeRegex.hasMatch(sanitizedValue)) {
-      return CountryCodeInputError.invalidFormat;
-    }
+    if (!_countryCodeRegex.hasMatch(sanitizedValue)) return CountryCodeInputError.invalidFormat;
     return null;
   }
 }

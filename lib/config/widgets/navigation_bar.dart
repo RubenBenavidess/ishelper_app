@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ishelper_app/config/themes/app_colors.dart';
 import 'package:ishelper_app/config/themes/app_typography.dart';
 
@@ -54,6 +55,29 @@ class ISNavBar extends StatelessWidget {
           label: 'Soporte',
         ),
       ],
+    );
+  }
+}
+
+class ScaffoldWithNavBar extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
+
+  const ScaffoldWithNavBar({
+    required this.navigationShell,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: navigationShell,
+      bottomNavigationBar: ISNavBar(
+        currentIndex: navigationShell.currentIndex,
+        onTap: (index) => navigationShell.goBranch(
+          index,
+          initialLocation: index == navigationShell.currentIndex,
+        ),
+      ),
     );
   }
 }

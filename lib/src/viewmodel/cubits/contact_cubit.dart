@@ -127,13 +127,21 @@ class ContactCubit extends Cubit<ContactState>{
     ));
   }
 
+  // Updates the initial FormzState, must be used CAREFUL.
+  void setInitialState(){
+    emit(state.copyWith(status: FormzSubmissionStatus.initial));
+  }
+
   /// Submits the contact form.
   ///
   /// If the form is not valid or already in progress, it does nothing.
   /// It sets the status to [FormzSubmissionStatus.inProgress] while submitting,
   /// and then to [FormzSubmissionStatus.success] or [FormzSubmissionStatus.failure].
   Future<void> submitContact() async{
-    if(!state.isValid) return;
+    if(!state.isValid) {
+      emit(state.copyWith(status: FormzSubmissionStatus.canceled));
+      return;
+    }
     if(state.status.isInProgress) return;
 
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
