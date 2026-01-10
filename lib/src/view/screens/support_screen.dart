@@ -61,7 +61,7 @@ class SupportScreen extends StatelessWidget {
       ),
     );
   }
-
+  
   Future<void> _launchSupportPortal(BuildContext context) async {
     final Uri url = Uri.parse(_supportUrl);
 

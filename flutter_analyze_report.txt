@@ -1,0 +1,4 @@
+[info] 'Share' is deprecated and shouldn't be used. Use SharePlus instead (/home/ruben/Documents/ISHelper Project/ishelper_app/lib/src/view/screens/pdf_screen.dart:87:15)
+[info] 'shareXFiles' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead (/home/ruben/Documents/ISHelper Project/ishelper_app/lib/src/view/screens/pdf_screen.dart:87:21)
+[warning] Unused import: 'package:formz/formz.dart' (/home/ruben/Documents/ISHelper Project/ishelper_app/test/src/viewmodel/formz_input/file_input_test.dart:2:8)
+[warning] Unused import: 'package:formz/formz.dart' (/home/ruben/Documents/ISHelper Project/ishelper_app/test/src/view/screens/builder_blocs/contact_reason_bloc_test.dart:4:8)

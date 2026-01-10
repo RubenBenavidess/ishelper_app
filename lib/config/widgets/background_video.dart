@@ -86,35 +86,38 @@ class _BackgroundVideoState extends State<BackgroundVideo>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox.expand(
-          child: Image.asset(
-            widget.placeholderPath,
-            fit: BoxFit.cover,
-          ),
-        ),
-
-        if (_controller.value.isInitialized)
+    return RepaintBoundary(
+      child: Stack(
+        children: [
           SizedBox.expand(
-            child: FittedBox(
+            child: Image.asset(
+              widget.placeholderPath,
               fit: BoxFit.cover,
-              child: SizedBox(
-                width: _controller.value.size.width,
-                height: _controller.value.size.height,
-                child: AnimatedOpacity(
-                  opacity: _isVideoVisible ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 500),
-                  child: VideoPlayer(_controller),
-                ),
-              ),
             ),
           ),
 
-        Container(
-          color: Colors.black.withAlpha(200),
-        ),
-      ],
-    );
+          if (_controller.value.isInitialized)
+            SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _controller.value.size.width,
+                  height: _controller.value.size.height,
+                  child: AnimatedOpacity(
+                    opacity: _isVideoVisible ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 500),
+                    child: VideoPlayer(_controller),
+                  ),
+                ),
+              ),
+            ),
+
+          Container(
+            color: Colors.black.withAlpha(200),
+          ),
+        ],
+      ),
+    ) ;
+    
   }
 }
